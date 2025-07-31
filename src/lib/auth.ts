@@ -5,6 +5,7 @@ import { prisma } from './prisma'
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
+  site: process.env.NEXTAUTH_URL || 'https://dispatch.forbush.biz',
   providers: [
     CredentialsProvider({
       name: 'credentials',

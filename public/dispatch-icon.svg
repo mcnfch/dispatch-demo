@@ -1,42 +1,44 @@
 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- Orange background -->
-  <rect width="512" height="512" rx="90" fill="#ff8c42"/>
+  <!-- Orange rounded background -->
+  <rect width="512" height="512" rx="90" fill="#FF8C42"/>
   
-  <!-- Calendar base -->
-  <rect x="120" y="160" width="240" height="180" rx="8" fill="#f5f5f5"/>
+  <!-- Calendar -->
+  <g transform="translate(90,120)">
+    <!-- Calendar body -->
+    <rect x="0" y="40" width="220" height="160" rx="12" fill="#F8F8F8"/>
+    <!-- Calendar top bar -->
+    <rect x="0" y="20" width="220" height="40" rx="12" fill="#4A5568"/>
+    <!-- Calendar rings -->
+    <rect x="30" y="0" width="20" height="50" rx="10" fill="#4A5568"/>
+    <rect x="170" y="0" width="20" height="50" rx="10" fill="#4A5568"/>
+    
+    <!-- Calendar grid items -->
+    <rect x="20" y="80" width="35" height="35" rx="6" fill="#D4D4D4"/>
+    <rect x="70" y="80" width="35" height="35" rx="6" fill="#D4D4D4"/>
+    <rect x="20" y="130" width="35" height="35" rx="6" fill="#D4D4D4"/>
+    <rect x="70" y="130" width="35" height="35" rx="6" fill="#D4D4D4"/>
+    <!-- Long calendar item -->
+    <rect x="120" y="130" width="80" height="35" rx="6" fill="#D4D4D4"/>
+  </g>
   
-  <!-- Calendar header -->
-  <rect x="120" y="140" width="240" height="40" rx="8" fill="#4a5568"/>
-  
-  <!-- Calendar rings -->
-  <rect x="160" y="120" width="16" height="40" rx="8" fill="#4a5568"/>
-  <rect x="336" y="120" width="16" height="40" rx="8" fill="#4a5568"/>
-  
-  <!-- Calendar squares -->
-  <rect x="140" y="200" width="30" height="30" rx="4" fill="#d4d4d4"/>
-  <rect x="180" y="200" width="30" height="30" rx="4" fill="#d4d4d4"/>
-  <rect x="220" y="200" width="50" height="30" rx="4" fill="#d4d4d4"/>
-  <rect x="140" y="240" width="30" height="30" rx="4" fill="#d4d4d4"/>
-  <rect x="180" y="240" width="30" height="30" rx="4" fill="#d4d4d4"/>
-  
-  <!-- Truck -->
-  <g transform="translate(280,260)">
+  <!-- Delivery truck -->
+  <g transform="translate(250,230)">
     <!-- Truck cab -->
-    <rect x="0" y="20" width="40" height="40" rx="4" fill="#4a5568"/>
+    <rect x="0" y="30" width="60" height="60" rx="8" fill="#4A5568"/>
     <!-- Truck bed -->
-    <rect x="40" y="25" width="60" height="35" rx="4" fill="#4a5568"/>
-    <!-- Truck windshield -->
-    <rect x="5" y="25" width="30" height="20" rx="2" fill="#f5f5f5"/>
+    <rect x="60" y="35" width="90" height="50" rx="8" fill="#4A5568"/>
+    <!-- Windshield -->
+    <rect x="8" y="38" width="44" height="30" rx="4" fill="#F8F8F8"/>
     <!-- Wheels -->
-    <circle cx="15" cy="70" r="12" fill="#2d3748"/>
-    <circle cx="15" cy="70" r="6" fill="#f5f5f5"/>
-    <circle cx="85" cy="70" r="12" fill="#2d3748"/>
-    <circle cx="85" cy="70" r="6" fill="#f5f5f5"/>
+    <circle cx="25" cy="110" r="18" fill="#2D3748"/>
+    <circle cx="25" cy="110" r="9" fill="#F8F8F8"/>
+    <circle cx="125" cy="110" r="18" fill="#2D3748"/>
+    <circle cx="125" cy="110" r="9" fill="#F8F8F8"/>
   </g>
   
   <!-- Location pin -->
-  <g transform="translate(380,120)">
-    <circle cx="0" cy="40" r="30" fill="#e53e3e"/>
-    <circle cx="0" cy="40" r="12" fill="#ffffff"/>
+  <g transform="translate(350,80)">
+    <path d="M 0,0 C -25,0 -45,20 -45,45 C -45,70 0,110 0,110 C 0,110 45,70 45,45 C 45,20 25,0 0,0 Z" fill="#E53E3E"/>
+    <circle cx="0" cy="45" r="18" fill="#FFFFFF"/>
   </g>
 </svg>
