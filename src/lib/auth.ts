@@ -3,9 +3,19 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { prisma } from './prisma'
 
+/**
+ * NextAuth Configuration
+ * 
+ * Configures authentication for the dispatch application with:
+ * - Credential-based authentication (email/password)
+ * - JWT session strategy for stateless authentication
+ * - Role-based access control (ADMIN, DISPATCHER, TECHNICIAN)
+ * - Custom callbacks for token and session management
+ * 
+ * Demo accounts are hardcoded for testing purposes with 'password' as the universal password.
+ */
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
-  site: process.env.NEXTAUTH_URL || 'https://dispatch.forbush.biz',
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -13,12 +23,18 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' }
       },
+      /**
+       * Authorize function for credential validation
+       * @param credentials - User provided email and password
+       * @returns User object if valid, null if invalid
+       */
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           return null
         }
 
-        // For demo purposes, create hardcoded users
+        // Demo users with different roles for testing
+        // In production, this would query a database with hashed passwords
         const users = [
           { id: '1', email: 'admin@dispatch.com', name: 'Admin User', role: 'ADMIN' },
           { id: '2', email: 'dispatcher@dispatch.com', name: 'Dispatcher', role: 'DISPATCHER' },
@@ -27,6 +43,7 @@ export const authOptions: NextAuthOptions = {
 
         const user = users.find(u => u.email === credentials.email)
         
+        // Simple password check for demo (all accounts use 'password')
         if (user && credentials.password === 'password') {
           return {
             id: user.id,
@@ -40,16 +57,28 @@ export const authOptions: NextAuthOptions = {
       }
     })
   ],
+  
+  // Use JWT for stateless sessions
   session: {
     strategy: 'jwt'
   },
+  
   callbacks: {
+    /**
+     * JWT callback - called when JWT is created
+     * Adds user role to the token for role-based access control
+     */
     async jwt({ token, user }) {
       if (user) {
         token.role = (user as { role: string }).role
       }
       return token
     },
+    
+    /**
+     * Session callback - called when session is accessed
+     * Adds user ID and role to the session object
+     */
     async session({ session, token }) {
       if (token) {
         session.user.id = token.sub!
@@ -58,6 +87,8 @@ export const authOptions: NextAuthOptions = {
       return session
     }
   },
+  
+  // Custom sign-in page
   pages: {
     signIn: '/auth/signin'
   }
